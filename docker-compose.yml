@@ -14,7 +14,9 @@ services:
    depends_on:
     - phpfpm
   phpfpm:
-    image: php:8.1-fpm
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
     volumes:
      - .:/code
      - ./.docker/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
