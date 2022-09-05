@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libmcrypt-dev \
-    openssl
+    openssl \
+    nodejs \
+    npm
 
 
 # Clear cache
@@ -29,11 +31,14 @@ RUN pecl update-channels && pecl install mcrypt-1.0.4 && docker-php-ext-enable m
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
-# RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
+# RUN docker-php-ext-configure gd
 # RUN docker-php-ext-install gd
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# setup npm to install all latest stuff
+RUN npm install -g npm@latest
 
 # Add user for application
 RUN groupadd -g 1000 www
