@@ -1,0 +1,29 @@
+version: '3'
+volumes:
+  database:
+services:
+  nginx:
+   image: nginx:latest
+   ports:
+    - "8080:80"
+   volumes:
+    - .:/code
+    - ./.docker/site.conf:/etc/nginx/conf.d/site.conf
+   links:
+    - phpfpm
+  phpfpm:
+    image: php:8.1-fpm
+    volumes:
+     - .:/code
+  database:
+    image: mysql/mysql-server:latest
+    ports:
+      - "9306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: alsupport
+      MYSQL_USER: alsupport
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - database:/var/lib/mysql
