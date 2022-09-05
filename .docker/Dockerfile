@@ -31,8 +31,7 @@ RUN pecl update-channels && pecl install mcrypt-1.0.4 && docker-php-ext-enable m
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
-# RUN docker-php-ext-configure gd
-# RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd && docker-php-ext-install gd
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
