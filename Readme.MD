@@ -6,7 +6,11 @@
 3. MYSQL (latest version)
 
 ## Notes:
-.Docker folder contains the site configuration file for NGINX. To change the host name change the server_name value in the configuration file. Additionally, if the "phpfpm" docker service name is changed it must be updated in the site.conf file to match.
+.Docker folder contains the site configuration file for NGINX. Ensure the a TLD entry on your hosts file is pointing to docker. Additionally, if the "phpfpm" docker service name is changed it must be updated in the site.conf file to match.
+
+## Getting Started:
+1. Clone the repo
+2. docker-compose up -d --build
 
 ## TODO
 1. Nodejs
